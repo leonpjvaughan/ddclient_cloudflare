@@ -25,7 +25,7 @@ see [DISCLAIMER.md](DISCLAIMER.md)
       Note - I found this information in the default ddclient.conf of the linuxserver/ddclient image.
     - To create a secret, run the following command:
     ```bash
-    sudo apt install ddclient
+    docker secret create ddclient_ddns_pass /path/to/secret.txt
     ```
 
 3. Update your ddclient.conf file and update the docker-compose.yml volume to point to your ddclient.conf file (see
