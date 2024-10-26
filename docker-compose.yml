@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  ddns-ddclient:
+    image: linuxserver/ddclient
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - FILE__DDNS_PASS=/run/secrets/ddns_pass  # uses the file to create the environment variable DDNS_PASS
+    volumes:
+#      - ./config:/config  # alternative location of example ddclient.conf file
+      - ./.config:/config  # ddclient.conf file is in .config directory (redacted)
+    secrets:
+      - ddns_pass
+
+# create an external secret - docker secret create ddclient_ddns_pass /path/to/your/passwordfile
+secrets:
+  ddns_pass:
+    external: true
+    name: ddclient_ddns_pass
+
